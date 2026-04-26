@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { width: 380px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 14px; color: #1a1a1a; }
+    .header { padding: 16px; background: #0f766e; color: white; }
+    .header h1 { font-size: 16px; font-weight: 700; }
+    .header p { font-size: 12px; opacity: 0.88; margin-top: 4px; line-height: 1.4; }
+    .body { padding: 16px; }
+    .status { padding: 10px 12px; border-radius: 8px; margin-bottom: 12px; font-size: 13px; display: flex; align-items: center; gap: 8px; }
+    .status.idle { background: #f3f4f6; color: #6b7280; }
+    .status.ok { background: #ecfdf5; color: #065f46; }
+    .status.err { background: #fef2f2; color: #991b1b; }
+    .status.loading { background: #eff6ff; color: #1e40af; }
+    .status .icon { font-size: 16px; flex-shrink: 0; }
+    .site { padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; background: #fafafa; }
+    .site-label { color: #6b7280; font-size: 12px; margin-bottom: 4px; }
+    .site-url { font-size: 12px; word-break: break-all; color: #111827; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+    .btn { width: 100%; padding: 10px; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; }
+    .btn:hover { opacity: 0.9; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-primary { background: #0f766e; color: white; }
+    .btn-secondary { background: #f3f4f6; color: #374151; }
+    .cookies-table { width: 100%; margin-top: 12px; border-collapse: collapse; font-size: 12px; }
+    .cookies-table th { text-align: left; padding: 4px 8px; color: #6b7280; font-weight: 500; border-bottom: 1px solid #e5e7eb; }
+    .cookies-table td { padding: 4px 8px; border-bottom: 1px solid #f3f4f6; }
+    .cookies-table code { word-break: break-all; }
+    .badge { display: inline-block; padding: 2px 6px; margin-right: 4px; border-radius: 999px; background: #e0f2fe; color: #075985; font-size: 11px; }
+    .muted { color: #6b7280; }
+    .empty { margin-top: 12px; padding: 12px; border-radius: 8px; background: #f9fafb; color: #6b7280; font-size: 13px; line-height: 1.5; }
+    .footer { padding: 8px 16px 12px; font-size: 11px; color: #9ca3af; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Cookie Extractor</h1>
+    <p>Read cookies from the current site. Everything stays local — nothing is sent anywhere.</p>
+  </div>
+  <div class="body">
+    <div id="status" class="status idle">
+      <span class="icon" id="status-icon">i</span>
+      <span id="status-text">Click the button below to read cookies</span>
+    </div>
+    <div class="site">
+      <div class="site-label">Current site</div>
+      <div id="site-url" class="site-url muted">Not loaded yet</div>
+    </div>
+    <button id="btn-detect" class="btn btn-primary">Read Cookies</button>
+    <div class="actions">
+      <button id="btn-copy-string" class="btn btn-secondary" disabled>Copy as Header</button>
+      <button id="btn-copy-json" class="btn btn-secondary" disabled>Copy as JSON</button>
+    </div>
+    <div id="empty-state" class="empty" style="display:none">No cookies found, or the extension lacks permission to access this site.</div>
+    <table id="cookies-table" class="cookies-table" style="display:none">
+      <thead><tr><th>Cookie</th><th>Flags</th><th>Value</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div class="footer">Local only &middot; No data leaves your browser</div>
+  <script src="popup.js"></script>
+</body>
+</html>
