@@ -16,6 +16,7 @@ __pycache__/
 *.py[cod]
 
 # 临时与分析草稿
+diss/logo/
 tmp/
 *.log
 
