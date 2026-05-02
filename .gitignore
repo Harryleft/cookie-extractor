@@ -1,5 +1,25 @@
 .DS_Store
 Thumbs.db
+
+# 本地助手与代理配置
+CLAUDE.md
+AGENTS.md
+
+# 测试与覆盖率产物
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 运行时缓存
+__pycache__/
+*.py[cod]
+
+# 临时与分析草稿
+tmp/
+*.log
+
+# 扩展打包产物
 *.crx
 *.pem
 *.zip
